@@ -11,13 +11,18 @@ jobs:
     permissions:
         pull-requests: write
 
+    strategy:
+      matrix:
+        node-version: [20, 21]
+    
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: ${{ matrix.node-version }}
           check-latest: true
 
       - name: Install dependencies
@@ -41,3 +46,34 @@ jobs:
         run: |
           echo "## Code Coverage" >> $GITHUB_STEP_SUMMARY
           echo "${{ steps.coverage.outputs.markdownReport }}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4.0.0
+        if: matrix.node-version == 21
+        with:
+          name: coverage
+          path: coverage 
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    
+    permissions:
+        contents: read
+        pages: write
+        id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
