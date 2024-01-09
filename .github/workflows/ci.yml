@@ -47,10 +47,9 @@ jobs:
           echo "## Code Coverage" >> $GITHUB_STEP_SUMMARY
           echo "${{ steps.coverage.outputs.markdownReport }}" >> $GITHUB_STEP_SUMMARY
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4.0.0
+      - name: Upload page artifacts
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
           path: coverage 
 
   deploy:
