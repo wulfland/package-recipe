@@ -1,12 +1,16 @@
 name: CI
 
-on: [push]
+on:
+    pull_request:
+    push:
+      branches:
+        - main
 
 jobs:
   build:
     permissions:
         pull-requests: write
-        
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
