@@ -4,7 +4,7 @@
   "description": "This is a package to demo releasing in GitHub.",
   "main": "index.js",
   "scripts": {
-    "test": "exit 0"
+    "test": "(jest && make-coverage-badge)"
   },
   "repository": {
     "type": "git",
@@ -12,8 +12,24 @@
   },
   "author": "Michael Kaufmann",
   "license": "MIT",
+  "jest": {
+    "verbose": true,
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./src/**"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/wulfland/package-recipe/issues"
   },
-  "homepage": "https://github.com/wulfland/package-recipe#readme"
+  "homepage": "https://github.com/wulfland/package-recipe#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "make-coverage-badge": "^1.2.0"
+  }
 }
