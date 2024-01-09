@@ -16,7 +16,7 @@
     "verbose": true,
     "coverageReporters": [
       "json-summary",
-      "text",
+      ["text", { "file": "coverage.txt", "path": "./coverage" }],
       "lcov"
     ],
     "collectCoverage": true,
