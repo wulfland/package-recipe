@@ -52,9 +52,14 @@ jobs:
         with:
           name: coverage
           path: coverage 
+    
+      - name: Upload page artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: coverage
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     runs-on: ubuntu-latest
     concurrency:
