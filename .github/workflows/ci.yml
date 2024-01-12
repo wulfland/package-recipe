@@ -10,10 +10,12 @@ jobs:
   build:
     permissions:
         pull-requests: write
+    env:
+      MAIN_VERSION: "21.x"
 
     strategy:
       matrix:
-        node-version: ["21.x"]
+        node-version: ["21.x", "20.x"]
     
     runs-on: ubuntu-latest
     
@@ -44,10 +46,11 @@ jobs:
 
       - name: Add coverage report to the job summary
         run: |
-          echo "## Code Coverage" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Code Coverage v${{ matrix.node-version }}" >> "$GITHUB_STEP_SUMMARY"
           echo "${{ steps.coverage.outputs.markdownReport }}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload page artifacts
+        if: ${{ matrix.node-version == env.MAIN_VERSION }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: coverage 
