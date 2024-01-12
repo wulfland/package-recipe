@@ -44,8 +44,8 @@ jobs:
 
       - name: Add coverage report to the job summary
         run: |
-          echo "## Code Coverage" >> $GITHUB_STEP_SUMMARY
-          echo "${{ steps.coverage.outputs.markdownReport }}" >> $GITHUB_STEP_SUMMARY
+          echo "## Code Coverage" >> "$GITHUB_STEP_SUMMARY"
+          echo "${{ steps.coverage.outputs.markdownReport }}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload page artifacts
         uses: actions/upload-pages-artifact@v3

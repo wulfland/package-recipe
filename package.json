@@ -16,7 +16,13 @@
     "verbose": true,
     "coverageReporters": [
       "json-summary",
-      ["text", { "file": "coverage.txt", "path": "./coverage" }],
+      [
+        "text",
+        {
+          "file": "coverage.txt",
+          "path": "./coverage"
+        }
+      ],
       "lcov"
     ],
     "collectCoverage": true,
@@ -29,6 +35,11 @@
   },
   "homepage": "https://github.com/wulfland/package-recipe#readme",
   "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.7.0",
     "make-coverage-badge": "^1.2.0"
   }
