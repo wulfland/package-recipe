@@ -46,8 +46,8 @@ jobs:
 
       - name: Add coverage report to the job summary
         run: |
-          echo "## Code Coverage v${{ matrix.node-version }}" >> $GITHUB_STEP_SUMMARY
-          echo "${{ steps.coverage.outputs.markdownReport }}" >> $GITHUB_STEP_SUMMARY
+          echo "## Code Coverage v${{ matrix.node-version }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "${{ steps.coverage.outputs.markdownReport }}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload page artifacts
         if: ${{ matrix.node-version == env.MAIN_VERSION }}
