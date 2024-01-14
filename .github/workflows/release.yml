@@ -12,11 +12,27 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 21.x
           registry-url: https://npm.pkg.github.com/
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.10.2
+        with:
+          versionSpec: '5.x'
+            
+      - name: Determine Version
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0.10.2
+          
+      - name: 'Change NPM version'
+        uses: reedyuk/npm-version@1.2.2
+        with:
+          version: $GITVERSION_SEMVER
 
       - name: Install dependencies
         run: npm install
@@ -24,6 +40,7 @@ jobs:
       - name: Run tests
         run: npm test
           
-      - run: npm publish
+      - name: Publish package 
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
