@@ -61,4 +61,4 @@ jobs:
           asset_name: SBoM
           tag: ${{ github.ref }}
           overwrite: true
-          body: "Software Bill of Materials for ${{ github.ref }}"
+          
