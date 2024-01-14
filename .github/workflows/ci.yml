@@ -10,6 +10,7 @@ jobs:
   build:
     permissions:
         pull-requests: write
+        security-events: write
     env:
       MAIN_VERSION: "21.x"
 
@@ -32,7 +33,7 @@ jobs:
 
       - name: Run tests
         run: npm test
-
+  
       - name: Prepare coverage report in markdown
         uses: fingerprintjs/action-coverage-report-md@v1.0.6
         id: coverage
@@ -54,6 +55,17 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: coverage 
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: 'javascript-typescript'
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript-typescript"
 
   deploy:
     if: ${{ github.ref == 'refs/heads/main' }}
