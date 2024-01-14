@@ -46,6 +46,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Generate SBoM
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api \
             -H "Accept: application/vnd.github+json" \
