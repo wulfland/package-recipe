@@ -1,13 +1,11 @@
 /**
  * Unit tests for the index.js
  */
-
+// index.test.js
 describe('index.js', () => {
-  it('console.log the text "Hello world!"', () => {
-    const indexMock = jest.spyOn(console, 'log')
+  it('greet function returns Hello world!', () => {
+    const greet = require('../src/index')
 
-    require('../src/index')
-
-    expect(indexMock).toHaveBeenCalledWith('Hello world!')
+    expect(greet()).toBe('Hello world!')
   })
 })

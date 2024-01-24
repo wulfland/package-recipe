@@ -1,1 +1,4 @@
-console.log('Hello world!')
+// index.js
+module.exports = function greet () {
+  return 'Hello world!'
+}
