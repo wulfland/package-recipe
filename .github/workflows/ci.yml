@@ -146,6 +146,11 @@ jobs:
           gh release create ${{ env.GITVERSION_SEMVER }} --generate-notes
           gh release upload ${{ env.GITVERSION_SEMVER }} sbom.json --clobber
     
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21.x
+          registry-url: https://npm.pkg.github.com/
+
       - name: 'Change NPM version'
         uses: reedyuk/npm-version@1.2.2
         with:
