@@ -79,6 +79,9 @@ jobs:
           languages: 'javascript-typescript'
           queries: security-and-quality
 
+      - run: |
+          ls /opt/hostedtoolcache/CodeQL/
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
