@@ -1,4 +1,4 @@
 // index.js
 module.exports = function greet () {
-  return 'Hello world! v2.1.5'
+  return 'Hello world! v3.0.0'
 }
