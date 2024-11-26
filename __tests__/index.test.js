@@ -6,6 +6,6 @@ describe('index.js', () => {
   it('greet function returns Hello world!', () => {
     const greet = require('../src/index')
 
-    expect(greet()).toBe('Hello world! v3.0.0')
+    expect(greet()).toBe('Hello world! #DDC24')
   })
 })
