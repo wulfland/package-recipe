@@ -1,4 +1,4 @@
 // index.js
 module.exports = function greet () {
-  return 'Hello world! #DDC24 4'
+  return 'Hello world! #DDC24 💩'
 }
